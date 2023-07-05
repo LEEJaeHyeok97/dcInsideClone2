@@ -6,11 +6,16 @@
 </head>
 <body>
 <button onclick="saveReq()">글작성</button>
-<href src="/board/save"></href>
+<href src="/board/save">글작성(링크)</href>
+<button onclick="listReq()">글목록</button>
 </body>
 <script>
     const saveReq = () => {
         location.href = "/board/save";
+    }
+
+    const listReq = () => {
+        location.href = "/board/";
     }
 </script>
 </html>
