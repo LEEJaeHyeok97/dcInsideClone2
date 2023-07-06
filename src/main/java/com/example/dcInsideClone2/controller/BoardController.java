@@ -61,4 +61,10 @@ public class BoardController {
         return "detail";
 //        return "redirect:/board/" + boardDTO.getId(); 수정 시 조회수가 올라가는 문제 있음
     }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Long id) {
+        boardService.delete(id);
+        return "redirect:/board/";
+    }
 }
