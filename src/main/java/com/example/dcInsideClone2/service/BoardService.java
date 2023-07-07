@@ -19,9 +19,10 @@ import java.util.Optional;
 public class BoardService {
 
     private final BoardRepository boardRepository;
-    public void save(BoardDTO boardDTO) {
+    public Long save(BoardDTO boardDTO) {
         BoardEntity boardEntity = BoardEntity.toSaveEntity(boardDTO);
         boardRepository.save(boardEntity);
+        return boardEntity.getId();
     }
 
     public List<BoardDTO> findAll() { //엔티티로 받아온 객체를 DTO로 변환해서 옮겨줘야한다.

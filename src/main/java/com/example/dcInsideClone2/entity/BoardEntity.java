@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 //DB의 테이블 역할을 하는 클래스
 @Entity
@@ -17,6 +18,7 @@ public class BoardEntity extends BaseEntity {
     private Long id;
 
     @Column(length = 20, nullable = false) //크기 20, not null
+    @NotEmpty
     private String boardWriter;
 
     @Column //크기 255, null 가능
