@@ -4,10 +4,7 @@ import com.example.dcInsideClone2.dto.BoardDTO;
 import com.example.dcInsideClone2.service.BoardService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -31,4 +28,12 @@ public class BoardApiController {
             this.id = id;
         }
     }
+
+    @GetMapping("/api/v1/{id}")
+    public BoardDTO findById2(@PathVariable Long id) {
+        BoardDTO boardDTO = boardService.findById2(id);
+
+        return boardDTO;
+    }
+
 }

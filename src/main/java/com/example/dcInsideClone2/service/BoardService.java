@@ -9,6 +9,8 @@ import com.example.dcInsideClone2.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +20,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class BoardService {
 
+    EntityManager em;
     private final BoardRepository boardRepository;
     public Long save(BoardDTO boardDTO) {
         BoardEntity boardEntity = BoardEntity.toSaveEntity(boardDTO);
@@ -35,6 +38,17 @@ public class BoardService {
 
         return boardDTOList;
     }
+
+    public BoardDTO findById2(Long id) {
+        BoardEntity boardEntity = em.createQuery("SELECT * FROM board_table b WHERE b.id", BoardEntity.class)
+                .setParameter("id", id)
+                .getSingleResult();
+
+        BoardDTO boardDTO = BoardDTO.toBoardDTO(boardEntity);
+        return boardDTO;
+
+    }
+
 
     @Transactional //jpa에 수동적으로 추가해준 메서드는 Transactional을 붙여준다.
     public void updateHits(Long id) {
